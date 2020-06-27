@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   return runApp(MaterialApp(
@@ -25,6 +26,16 @@ class MagicShell extends StatefulWidget {
 
 class _MagicShellState extends State<MagicShell> {
   TextEditingController _questionController = TextEditingController();
+  List<String> listText = [
+    '',
+    'Maybe Someday',
+    'Nothing',
+    'Neither',
+    'No',
+    'Yes',
+    'Try Asking Again'
+  ];
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,7 +63,9 @@ class _MagicShellState extends State<MagicShell> {
               RaisedButton(
                 color: Colors.blueAccent.shade700,
                 onPressed: () {
-                  print('pressed');
+                  setState(() {
+                    index = Random().nextInt(6) + 1;
+                  });
                 },
                 child: Text(
                   'Ask',
@@ -62,6 +75,20 @@ class _MagicShellState extends State<MagicShell> {
                 ),
               ),
             ],
+          ),
+        ),
+        SizedBox(
+          height: 45.0,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Text(
+              '${listText[index]}',
+              style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue.shade900,
+              ),
+            ),
           ),
         ),
         Expanded(
